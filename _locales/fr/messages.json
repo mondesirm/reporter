@@ -1,0 +1,60 @@
+{
+	"extensionName": {
+		"message": "Reporter",
+		"description": "Nom de l'extension."
+	},
+	"extensionDescription": {
+		"message": "Votre première extension Web!",
+		"description": "Description de l'extension."
+	},
+	"onInstall": {
+		"message": "Merci d'avoir installé notre extension Reporter !",
+		"description": "Message affiché lors de l'installation de l'extension."
+	},
+	"onUninstall": {
+		"message": "Merci d'avoir utilisé notre extension Reporter !",
+		"description": "Message affiché lors de la désinstallation de l'extension."
+	},
+	"notificationTitle": {
+		"message": "Nouvel élément créé !",
+		"description": "Titre de la notification."
+	},
+	"notificationContent": {
+		"message": "$DATA$",
+		"description": "Contenu de la notification.",
+		"placeholders": {
+			"data" : {
+				"content" : "$1",
+				"example" : "https://developer.mozilla.org"
+			}
+		}
+	},
+	"notificationButton": {
+		"message": "Fermer",
+		"description": "Button text for the notification."
+	},
+	"options_confirmDelete": {
+		"message": "Affiche une boîte de dialogue de confirmation avant de supprimer un élément des arbres.",
+		"description": "Texte pour le paramètre confirmDelete."
+	},
+	"options_notifyOnLinkClick": {
+		"message": "Affiche une notification lorsque un lien est cliqué.",
+		"description": "Texte pour le paramètre notifyOnLinkClick."
+	},
+	"options_newElementOnTextSelection": {
+		"message": "Créer un nouvel élément lorsque du texte est sélectionné.",
+		"description": "Texte pour le paramètre newElementOnTextSelection."
+	},
+	"resetOptions": {
+		"message": "Reset des options",
+		"description": "Texte pour le bouton de réinitialisation des options."
+	},
+	"resetData": {
+		"message": "Reset des données",
+		"description": "Texte pour le bouton de réinitialisation des données."
+	},
+	"resetAll": {
+		"message": "Reset Tout",
+		"description": "Texte pour le bouton de réinitialisation de tout."
+	}
+}

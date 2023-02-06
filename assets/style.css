@@ -1,0 +1,220 @@
+/** DOCUMENT */
+html {
+	font-size: calc(1rem / 1.2);
+}
+
+body {
+	opacity: 0;
+}
+
+body.ready {
+	opacity: 1;
+	transition: .25s opacity;
+}
+
+/** APP */
+#app {
+	min-width: max-content;
+}
+
+/* #app::part(body) {
+	padding-top: 0;
+} */
+
+/** CARD */
+sl-card {
+	overflow: auto;
+}
+
+sl-card > [slot='header'] {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+sl-card[slot='end'] {
+	visibility: hidden;
+}
+
+sl-card::part(header) {
+	background-color: var(--sl-color-neutral-100);
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+/** DRAWER */
+sl-drawer {
+	--size: auto;
+}
+
+/** TAB PANEL */
+sl-tab-panel {
+	position: relative;
+	overflow: hidden;
+}
+
+/** SPLIT PANEL */
+sl-split-panel {
+	/* --min: 200px; */
+	/* --max: calc(100% - 282px); */
+	--divider-width: 2px;
+}
+
+sl-split-panel > [slot='start'] {
+	display: grid;
+	--border-radius: var(--sl-border-radius-medium) 0 0 var(--sl-border-radius-medium);
+}
+
+sl-split-panel [slot='divider'] {
+	position: absolute;
+	border-radius: var(--sl-border-radius-small);
+	background: var(--sl-color-neutral-400);
+	color: var(--sl-color-neutral-0);
+	padding: 0.5rem 0.125rem;
+}
+
+sl-split-panel:hover [slot='divider'] {
+	background-color: var(--sl-color-neutral-600);
+	color: var(--sl-color-neutral-0);
+}
+
+sl-split-panel::part(divider):active,
+sl-split-panel::part(divider):active::after {
+	background-color: var(--sl-color-neutral-600);
+}
+
+sl-split-panel::part(divider)::after {
+	content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--sl-color-neutral-400);
+    border-radius: var(--sl-border-radius-circle);
+    bottom: -8px;
+    transform: translateX(4px);
+}
+
+.split-panel-snapping-dots::after {
+	content: '';
+    position: absolute;
+	left: 50%;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--sl-color-neutral-400);
+    border-radius: var(--sl-border-radius-circle);
+    transform: translate(-3.7px, 2.3px);
+}
+
+/** TREE */
+sl-tree {
+	--indent-guide-width: 1px;
+}
+
+sl-tree-item::part(expand-button) {
+	rotate: none;
+}
+
+/** DIVIDER */
+sl-divider {
+	display: inline;
+}
+
+.spacer {
+	flex: 1;
+}
+
+/** RELATIVE TIME  */
+sl-relative-time {
+	float: right;
+	color: var(--sl-color-neutral-600);
+}
+
+/** LABEL */
+.label-on-left {
+	--label-width: auto;
+	--gap-width: .5rem;
+}
+
+.label-on-left + .label-on-left {
+	margin-top: var(--sl-spacing-medium);
+}
+
+.label-on-left::part(form-control) {
+	display: grid;
+	grid: auto / var(--label-width) 1fr;
+	gap: var(--sl-spacing-3x-small) var(--gap-width);
+	align-items: center;
+}
+
+.label-on-left::part(form-control-label) {
+	text-align: right;
+}
+
+.label-on-left::part(form-control-help-text) {
+	grid-column: span 2;
+	padding-left: calc(var(--label-width) + var(--gap-width));
+}
+
+/** BUTTON  */
+[data-open='new-element'],
+[data-open='new-report'] {
+	display: none;
+}
+
+[type='submit'] {
+	float: right;
+}
+
+sl-tree-item sl-icon {
+	color: var(--sl-color-warning-600);
+}
+
+[data-open^='new'] {
+	color: var(--sl-color-success-600);
+}
+
+[data-action^='delete'] {
+	color: var(--sl-color-danger-600);
+	display: hidden;
+}
+
+/** FORM */
+form {
+	display: grid;
+	grid-gap: var(--sl-spacing-medium);
+}
+
+/* Invalid styles */
+form sl-input[data-user-invalid]::part(base),
+form sl-select[data-user-invalid]::part(combobox) {
+	border-color: var(--sl-color-danger-600);
+}
+
+form [data-user-invalid]::part(form-control-label),
+form [data-user-invalid]::part(form-control-help-text) {
+	color: var(--sl-color-danger-700);
+}
+
+form sl-input:focus-within[data-user-invalid]::part(base),
+form sl-select:focus-within[data-user-invalid]::part(combobox) {
+	border-color: var(--sl-color-danger-600);
+	box-shadow: 0 0 0 var(--sl-focus-ring-width) var(--sl-color-danger-300);
+}
+
+/* Valid styles */
+form sl-input[data-user-valid]::part(base),
+form sl-select[data-user-valid]::part(combobox) {
+	border-color: var(--sl-color-success-600);
+}
+
+form [data-user-valid]::part(form-control-label),
+form [data-user-valid]::part(form-control-help-text) {
+	color: var(--sl-color-success-700);
+}
+
+form sl-input:focus-within[data-user-valid]::part(base),
+form sl-select:focus-within[data-user-valid]::part(combobox) {
+	border-color: var(--sl-color-success-600);
+	box-shadow: 0 0 0 var(--sl-focus-ring-width) var(--sl-color-success-300);
+}

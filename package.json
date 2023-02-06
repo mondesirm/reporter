@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@shoelace-style/shoelace": "^2.0.0",
+    "@types/jquery": "^3.5.16",
+    "chrome-types": "^0.1.170"
+  }
+}

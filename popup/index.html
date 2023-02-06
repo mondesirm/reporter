@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reporter</title>
+	<link rel="shortcut icon" href="../icons/nasapod48x48.png" />
+	<link rel="stylesheet" media="(prefers-color-scheme:light)" href="../assets/light.css" />
+	<link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../assets/dark.css" />
+	<link rel="stylesheet" href="../assets/style.css" />
+	<script src="../assets/jquery-3.6.3.slim.min.js"></script>
+	<!-- <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/shoelace.js"></script> -->
+	<script type="module" src="../node_modules/@shoelace-style/shoelace/dist/shoelace.js"></script>
+	<script src="./script.js"></script>
+</head>
+
+<body>
+	<sl-card id="app">
+		<div slot="header">
+			<sl-tooltip content="Options">
+				<sl-icon-button data-popup="options" name="gear" label="Options"></sl-icon-button>
+			</sl-tooltip>
+
+			<span data-i18n="extensionName">__ Home</span>
+
+			<sl-tooltip content="Help">
+				<sl-icon-button data-open="help" name="question-circle" label="Help"></sl-icon-button>
+			</sl-tooltip>
+		</div>
+
+		<sl-drawer id="new-category" label="New Category" placement="bottom" class="drawer-placement-bottom" contained">			
+			<sl-input pill class="label-on-left" label="Title" placeholder="The title of your category" required>
+				<sl-icon name="type" slot="prefix"></sl-icon>
+			</sl-input>
+
+			<sl-button data-action="newCategory" slot="footer" variant="primary">Create</sl-button>
+		</sl-drawer>
+
+		<sl-drawer id="new-element" label="New Element" placement="bottom" class="drawer-placement-bottom" contained">			
+			<sl-input pill class="label-on-left" label="Title" placeholder="The title of your element" required>
+				<sl-icon name="type" slot="prefix"></sl-icon>
+			</sl-input>
+
+			<sl-button data-action="newElement" slot="footer" variant="primary">Create</sl-button>
+		</sl-drawer>
+
+		<sl-drawer id="new-folder" label="New Folder" placement="bottom" class="drawer-placement-bottom" contained">			
+			<sl-input pill class="label-on-left" label="Title" placeholder="The title of your folder" required>
+				<sl-icon name="type" slot="prefix"></sl-icon>
+			</sl-input>
+
+			<sl-button slot="footer" variant="primary">Create</sl-button>
+		</sl-drawer>
+
+		<sl-drawer id="new-report" label="New Report" placement="bottom" class="drawer-placement-bottom" contained">			
+			<sl-input pill class="label-on-left" label="Title" placeholder="The title of your report" required>
+				<sl-icon name="type" slot="prefix"></sl-icon>
+			</sl-input>
+
+			<sl-button slot="footer" variant="primary">Create</sl-button>
+		</sl-drawer>
+
+		<sl-tab-group>
+			<sl-tab slot="nav" panel="elements">Elements</sl-tab>
+			<sl-tab slot="nav" panel="reports">Reports</sl-tab>
+
+			<sl-tab-panel name="elements">
+				<sl-animation easing="easeOutExpo" duration="1000" iterations="1">
+					<sl-split-panel snap="50%" vertical>
+						<sl-card slot="start">
+							<div slot="header">
+								<sl-tooltip content="Reload Elements">
+									<div>
+										<sl-animation easing="easeOutExpo" duration="1000" iterations="1">
+											<sl-icon-button data-action="loadElements" name="arrow-clockwise" label="Reload Elements"></sl-icon-button>
+										</sl-animation>
+									</div>
+								</sl-tooltip>
+
+								<sl-tooltip content="Toggle Selection Mode">
+									<sl-icon-button data-action="toggleSelectionMode" name="check-circle" label="Toggle Selection Mode"></sl-icon-button>
+								</sl-tooltip>
+
+								<sl-tooltip content="New Category">
+									<sl-icon-button data-open="new-category" name="folder-plus" label="New Category"></sl-icon-button>
+								</sl-tooltip>
+
+								<sl-tooltip content="New Element">
+									<sl-icon-button data-open="new-element" name="file-plus" label="New Element"></sl-icon-button>
+								</sl-tooltip>
+
+								<div class="spacer"></div>
+
+								<sl-tooltip content="Delete">
+									<sl-icon-button data-action="deleteElement" name="trash" label="Delete"></sl-icon-button>
+								</sl-tooltip>
+							</div>
+
+							<sl-tree data-tab="elements">
+								<sl-icon name="folder2" slot="expand-icon"></sl-icon>
+								<sl-icon name="folder" slot="collapse-icon"></sl-icon>
+							</sl-tree>
+						</sl-card>
+
+						<sl-icon slot="divider" name="grip-vertical"></sl-icon>
+
+						<sl-card slot="end">
+							<!-- <div slot="header">
+								<sl-tooltip content="Duplicate">
+									<sl-icon-button data-action="duplicate" name="files" label="Duplicate"></sl-icon-button>
+								</sl-tooltip>
+
+								<sl-tooltip content="Lock">
+									<sl-icon-button data-action="lock" name="lock" label="Lock"></sl-icon-button>
+								</sl-tooltip>
+
+								<sl-tooltip content="Unlock">
+									<sl-icon-button data-action="unlock" name="unlock" label="Unlock"></sl-icon-button>
+								</sl-tooltip>
+							</div> -->
+
+							<form id="element-form">
+								<sl-select name="type" pill hoist class="label-on-left" label="Type" placeholder="The type of your element" value="text" required>
+									<sl-icon name="cursor-text" slot="prefix"></sl-icon>
+
+									<sl-option value="text">
+										<sl-icon name="cursor-text" slot="prefix"></sl-icon>
+										Short Text
+									</sl-option>
+
+									<sl-option value="long">
+										<sl-icon name="textarea-t" slot="prefix"></sl-icon>
+										Long Text
+									</sl-option>
+
+									<sl-option value="number">
+										<sl-icon name="123" slot="prefix"></sl-icon>
+										Number
+									</sl-option>
+
+									<sl-option value="email">
+										<sl-icon name="at" slot="prefix"></sl-icon>
+										Email
+									</sl-option>
+
+									<sl-option value="password">
+										<sl-icon name="key" slot="prefix"></sl-icon>
+										Password
+									</sl-option>
+
+									<sl-option value="url">
+										<sl-icon name="link" slot="prefix"></sl-icon>
+										Url
+									</sl-option>
+
+									<sl-option value="tel">
+										<sl-icon name="telephone" slot="prefix"></sl-icon>
+										Phone
+									</sl-option>
+
+									<sl-option value="date">
+										<sl-icon name="calendar" slot="prefix"></sl-icon>
+										Date
+									</sl-option>
+
+									<sl-option value="time">
+										<sl-icon name="clock" slot="prefix"></sl-icon>
+										Time
+									</sl-option>
+
+									<sl-option value="datetime-local">
+										<sl-icon name="calendar-event" slot="prefix"></sl-icon>
+										Date & Time
+									</sl-option>
+								</sl-select>
+
+								<sl-input name="data" pill class="label-on-left" label="Data" placeholder="The data of your element" required>
+									<sl-icon name="file-binary" slot="prefix"></sl-icon>
+								</sl-input>
+							</form>
+
+							<div slot="footer">
+								<sl-relative-time lang="en" sync></sl-relative-time>
+							</div>
+						</sl-card>
+					</sl-split-panel>
+
+					<div class="split-panel-snapping-dots"></div>
+
+					<!-- <sl-dropdown placement="right-start" hoist>
+						<sl-button slot="trigger" caret>Element 1</sl-button>
+						<sl-menu>
+							<sl-menu-item value="duplicate">Duplicate</sl-menu-item>
+							<sl-menu-item value="delete">Delete</sl-menu-item>
+							<sl-divider></sl-divider>
+							<sl-menu-item type="checkbox" checked>Checkbox</sl-menu-item>
+							<sl-menu-item disabled>Disabled</sl-menu-item>
+							<sl-divider></sl-divider>
+							<sl-menu-item>
+								Delete
+								<sl-icon slot="prefix" name="trash"></sl-icon>
+							</sl-menu-item>
+						</sl-menu>
+					</sl-dropdown> -->
+				</sl-animation>
+			</sl-tab-panel>
+
+			<sl-tab-panel name="reports">
+				<sl-split-panel snap="50%" vertical>
+					<sl-card slot="start">
+						<div slot="header">
+							<sl-tooltip content="Reload Reports">
+								<div>
+									<sl-animation easing="easeOutExpo" duration="1000" iterations="1">
+										<sl-icon-button data-action="loadReports" name="arrow-clockwise" label="Reload Reports"></sl-icon-button>
+									</sl-animation>
+								</div>
+							</sl-tooltip>
+
+							<sl-tooltip content="New Folder">
+								<sl-icon-button data-open="new-folder" name="folder-plus" label="New Folder"></sl-icon-button>
+							</sl-tooltip>
+
+							<sl-tooltip content="New Report">
+								<sl-icon-button data-open="new-report" name="journal-plus" label="New Report"></sl-icon-button>
+							</sl-tooltip>
+
+							<sl-tooltip content="Toggle Selection Mode">
+								<sl-icon-button data-action="toggleSelectionMode" name="check-circle" label="Toggle Selection Mode"></sl-icon-button>
+							</sl-tooltip>
+
+							<div class="spacer"></div>
+
+							<sl-tooltip content="Delete Folder">
+								<sl-icon-button data-action="deleteFolder" name="folder-x" label="Delete Folder"></sl-icon-button>
+							</sl-tooltip>
+						</div>
+
+						<sl-tree data-tab="reports">
+							<sl-icon name="folder2" slot="expand-icon"></sl-icon>
+							<sl-icon name="folder" slot="collapse-icon"></sl-icon>
+						</sl-tree>
+					</sl-card>
+
+					<sl-icon slot="divider" name="grip-vertical"></sl-icon>
+
+					<sl-card slot="end">
+						<div slot="header">
+							<sl-tooltip content="Duplicate">
+								<sl-icon-button data-action="duplicate" name="files" label="Duplicate"></sl-icon-button>
+							</sl-tooltip>
+
+							<sl-tooltip content="Lock">
+								<sl-icon-button data-action="lock" name="lock" label="Lock"></sl-icon-button>
+							</sl-tooltip>
+
+							<sl-tooltip content="Unlock">
+								<sl-icon-button data-action="unlock" name="unlock" label="Unlock"></sl-icon-button>
+							</sl-tooltip>
+
+							<div class="spacer"></div>
+
+							<sl-tooltip content="Delete Report">
+								<sl-icon-button data-action="deleteReport" name="trash" label="Delete Report"></sl-icon-button>
+							</sl-tooltip>
+						</div>
+
+						<form id="report-form">
+							<sl-visually-hidden>
+								<sl-input type="hidden" name="id"></sl-input>
+							</sl-visually-hidden>
+
+							<sl-input name="title" pill class="label-on-left" label="Title" placeholder="The title of your report" required>
+								<sl-icon name="type" slot="prefix"></sl-icon>
+							</sl-input>
+
+							<br />
+
+							<sl-button data-action="addElementToReport" variant="primary">
+								<sl-icon slot="prefix" name="file-plus"></sl-icon>
+								Add Element
+							</sl-button>
+						</form>
+
+						<div slot="footer">
+							<sl-relative-time date="2020-07-15T09:17:00-04:00"></sl-relative-time>
+						</div>
+					</sl-card>
+				</sl-split-panel>
+
+				<div class="split-panel-snapping-dots"></div>
+			</sl-tab-panel>
+		</sl-tab-group>
+	</sl-card>
+</body>
+</html>

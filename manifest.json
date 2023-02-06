@@ -1,0 +1,71 @@
+{
+	"$schema": "https://json.schemastore.org/chrome-manifest",
+	"name": "__MSG_extensionName__",
+	"version": "1.0",
+	"manifest_version": 3,
+
+	"homepage_url": "https://fyc.esgi.fr",
+	"description": "__MSG_extensionDescription__",
+	"default_locale": "fr",
+	"icons": {
+		"16": "icons/nasapod16x16.png",
+		"32": "icons/nasapod32x32.png",
+		"48": "icons/nasapod48x48.png",
+		"128": "icons/nasapod128x128.png"
+	},
+	
+    "permissions": [
+		"storage",
+		"notifications",
+		"clipboardWrite"
+    ],
+    "optional_permissions": [
+        "contextMenus"
+    ],
+
+	"action": {
+		"default_title": "Reporter",
+		"default_icon": {
+			"16": "icons/nasapod16x16.png",
+			"32": "icons/nasapod32x32.png",
+			"48": "icons/nasapod48x48.png",
+			"128": "icons/nasapod128x128.png"
+		},
+		"default_popup": "popup/index.html"
+	},
+	"options_ui": {
+		"page": "popup/options.html"
+	},
+	"commands": {
+		"element": {
+			"suggested_key": {
+				"default": "Alt+Shift+E"
+			},
+			"description": "New Element"
+		},
+		"options": {
+			"suggested_key": {
+				"default": "Alt+Shift+O"
+			},
+			"description": "Open Options"
+		}
+	},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"]
+		}
+	],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'; worker-src 'self'"
+    },
+	"web_accessible_resources": [
+		{
+			"matches": ["<all_urls>"],
+			"resources": ["images/*.png", "popup/options.html"]
+		}
+	]
+}

@@ -1,0 +1,60 @@
+{
+	"extensionName": {
+		"message": "Reporter",
+		"description": "Name of the extension."
+	},
+	"extensionDescription": {
+		"message": "Your first WebExtension!",
+		"description": "Description of the extension."
+	},
+	"onInstall": {
+		"message": "Thanks for installing our WebExtension Reporter!",
+		"description": "Message shown when the extension is installed."
+	},
+	"onUninstall": {
+		"message": "Thanks for using our WebExtension Reporter!",
+		"description": "Message shown when the extension is uninstalled."
+	},
+	"notificationTitle": {
+		"message": "New element created!",
+		"description": "Title of the notification."
+	},
+	"notificationContent": {
+		"message": "$DATA$",
+		"description": "Content of the notification.",
+		"placeholders": {
+			"data": {
+				"content": "$1",
+				"example": "https://developer.mozilla.org"
+			}
+		}
+	},
+	"notificationButton": {
+		"message": "Dismiss",
+		"description": "Button text for the notification."
+	},
+	"options_confirmDelete": {
+		"message": "Show a confirmation dialog before deleting an item from trees.",
+		"description": "Label for the confirmDelete setting."
+	},
+	"options_notifyOnLinkClick": {
+		"message": "Show a notification when a link is clicked.",
+		"description": "Label for the notifyOnLinkClick setting."
+	},
+	"options_newElementOnTextSelection": {
+		"message": "Create a new element when text is selected.",
+		"description": "Label for the newElementOnTextSelection setting."
+	},
+	"resetOptions": {
+		"message": "Reset Options",
+		"description": "Label for the resetOptions button."
+	},
+	"resetData": {
+		"message": "Reset Data",
+		"description": "Label for the resetData button."
+	},
+	"resetAll": {
+		"message": "Reset All",
+		"description": "Label for the resetAll button."
+	}
+}

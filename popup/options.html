@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reporter</title>
+	<link rel="shortcut icon" href="../icons/nasapod48x48.png" />
+	<link rel="stylesheet" media="(prefers-color-scheme:light)" href="../assets/light.css" />
+	<link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../assets/dark.css" />
+	<link rel="stylesheet" href="../assets/style.css" />
+	<script src="../assets/jquery-3.6.3.slim.min.js"></script>
+	<!-- <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0/dist/shoelace.js"></script> -->
+	<script type="module" src="../node_modules/@shoelace-style/shoelace/dist/shoelace.js"></script>
+	<script src="./script.js"></script>
+</head>
+
+<body>
+	<sl-card id="options">
+		<div slot="header">
+			<sl-tooltip content="Options">
+				<sl-icon-button data-popup="index" name="arrow-left" label="Back"></sl-icon-button>
+			</sl-tooltip>
+
+			<div data-i18n="extensionName">__ Options</div>
+
+			<sl-tooltip content="Help">
+				<sl-icon-button data-open="help" name="question-circle" label="Help"></sl-icon-button>
+			</sl-tooltip>
+		</div>
+
+		<form id="options">
+			<sl-button-group>
+				<sl-button data-i18n="resetOptions" data-action="resetOptions" form="options" variant="warning">__</sl-button>
+				<sl-button data-i18n="resetData" data-action="resetData" form="options" variant="danger">__</sl-button>
+				<sl-button data-i18n="resetAll" data-action="resetAll" form="options" variant="danger">__</sl-button>
+			</sl-button-group>
+		</form>
+		<br />
+		<sl-button data-popup="index">Back</sl-button>
+	</sl-card>
+</body>
+</html>
